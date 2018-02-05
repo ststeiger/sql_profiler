@@ -9,11 +9,26 @@ So it runs on
 It's a fork of [ExpressProfiler](https://github.com/OleksiiKovalov/expressprofiler) for MS-SQL-Server ([actually a fork of a slightly modified version](https://github.com/ststeiger/ExpressProfiler) - working datetime-format for any language). <br />
 I used it to port ExpressProfiler to .NET Core (command-line).
 
+
 sql_profiler can be used with both Express and non-Express editions of SQL Server 2005/2008/2008r2/2012/2014.<br />
 Installation or administrative rights are not required. <br />
 Trace permission are required for the SQL-user.<br />
 
 
+**Invocation**
+```bash
+./sql_profiler --server {computername\instance} --username WebAppWebServices --password TOP_SECRET --db "The DB you want to profile";
+```
+
+or from the project:
+
+```bash
+dotnet run sql_profiler --server {computername\instance} --username WebAppWebServices --password TOP_SECRET --db "The DB you want to profile";
+```
+If you omit the username, it will attempt to connect with integrated security.
+
+
+**Grant rights:** 
 
 
 ```sql
@@ -34,6 +49,8 @@ GO
 
 [(source)](https://www.mssqltips.com/sqlservertip/3559/how-to-grant-permissions-to-run-sql-server-profiler-for-a-non-system-admin-user/)
 
+
+### Standalone Building
 
 **Build for Windows x86-64:**
 > dotnet restore -r win-x64<br />

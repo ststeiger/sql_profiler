@@ -280,8 +280,11 @@ namespace sql_profiler
 
         static void Main(string[] args)
         {
-            MainTest(args);
-            // DoProfiling(args);
+            // MainTest(args);
+            DoProfiling(args);
+            
+            System.Drawing.Color.
+            
         }
 
         static void MainTest(string[] args)
