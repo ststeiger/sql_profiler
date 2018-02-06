@@ -137,14 +137,15 @@ namespace ExpressProfiler
                 }
                 Next();
             }
-
+            
             sb.AppendLine();
             sb.AppendLine();
-
+            string lol = sb.ToString();
+            
             lsTokenTypeHistory.Clear();
             lsTokenTypeHistory = null;
-            
-            return sb.ToString();
+
+            return lol;
         }
 
         private string Line

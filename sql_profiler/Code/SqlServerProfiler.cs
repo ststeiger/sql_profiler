@@ -365,8 +365,11 @@ User Id={1};Password='{2}';;Application Name=Express Profiler"
                 return "Trace paused";
 
             if (evt == m_EventStopped)
+            {
+                
                 return "Trace stopped";
-
+            }
+            
             return ProfilerEvents.Names[evt.EventClass];
         } // End Function GetEventCaption 
 
@@ -389,12 +392,14 @@ User Id={1};Password='{2}';;Application Name=Express Profiler"
             //m_columns.Add(new PerfColumn { Caption = "Object name", Column = ProfilerEventColumns.ObjectName, Width = 70 });
             //m_columns.Add(new PerfColumn { Caption = "Application name", Column = ProfilerEventColumns.ApplicationName, Width = 70 });
             //m_columns.Add(new PerfColumn { Caption = "Host name", Column = ProfilerEventColumns.HostName, Width = 70 });
-
-
+            
+            
             // System.Console.WriteLine(evt);
+            System.Console.ResetColor();
             string caption = GetEventCaption(evt);
             System.Console.Write(caption);
             System.Console.Write(new string(' ', System.Console.BufferWidth - System.Console.CursorLeft));
+            System.Console.Write(System.Environment.NewLine);
             
             string td = evt.GetFormattedData(ProfilerEventColumns.TextData, null);
             // System.Console.WriteLine(td);

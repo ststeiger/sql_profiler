@@ -6,6 +6,7 @@ namespace ExpressProfiler
     public class ConsoleOutputWriter
         : OutputWriter
     {
+        private static bool s_isWindows;
         private static System.Collections.Generic.Dictionary<
             System.Drawing.Color, System.ConsoleColor> s_colorDict;
 
@@ -16,6 +17,10 @@ namespace ExpressProfiler
 
         static ConsoleOutputWriter()
         {
+            s_isWindows = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(
+                System.Runtime.InteropServices.OSPlatform.Windows
+            );
+            
             s_colorDict = SetupColorDictionary();
         }
 
@@ -78,19 +83,19 @@ namespace ExpressProfiler
                 // if (!s_colorDict.ContainsKey(value)) System.Console.WriteLine(value);
                 System.Console.BackgroundColor = s_colorDict[value];
                 this.AppendLine();
-                //System.Console.WriteLine(new string(' ', System.Console.BufferWidth));
             }
         }
 
 
         public override void AppendLine()
-        {
+        {   
             // Finish the line with empty color
             System.Console.Write(new string(' ', System.Console.BufferWidth - System.Console.CursorLeft));
-            // System.Console.WriteLine();
+            System.Console.Write(System.Environment.NewLine);
+            //else System.Console.WriteLine();
         }
-
-
+        
+        
         public override void Append(string text)
         {
             System.Console.Write(text);

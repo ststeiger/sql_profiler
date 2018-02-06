@@ -283,13 +283,20 @@ namespace sql_profiler
             // MainTest(args);
             DoProfiling(args);
         }
-
+        
+        
         static void MainTest(string[] args)
         {
             string instance = GetPlatformDefaultInstance();
             // dotnet run --server localhost --username MY_USER --password MY_PASSWORD --db MY_DB
             // string ar = $"--server {instance} --username WebAppWebServices --password TOP_SECRET --Db COR_Basic_Demo_V4";
-            string ar = $"--server {instance} /db \"SwissRe_Test_V4\"";
+            // string ar = $"--server {instance} /db \"COR_Basic_Demo_V4\"";
+            
+            string un = TestPlotly.SecretManager.GetSecret<string>("DefaultDbUser");
+            string pw = TestPlotly.SecretManager.GetSecret<string>("DefaultDbPassword");
+            
+            string ar = $"--server {instance} --username {un} --password {pw} --db \"Redmine\"";
+            
             DoProfiling(ar.Split(' '));
         } // End Sub Main 
 
@@ -351,17 +358,22 @@ namespace sql_profiler
             
 
             s_profiler = new ExpressProfiler.SqlServerProfiler(server, db, username, password);
-
-
+            
             s_profiler.StartProfiling();
-
-
-            // System.Console.WriteLine("--- Press any key to stop profiling --- ");
-            //System.Console.ReadKey();
-
-            System.Console.WriteLine("--- Press ENTER to stop profiling --- ");
-            System.Console.ReadLine();
-
+            
+            
+            // System.Console.WriteLine("--- Press ENTER to stop profiling --- ");
+            // System.Console.ReadLine();
+            
+            System.Console.WriteLine("--- Press any key to stop profiling --- ");
+            // System.Console.ReadKey();
+            
+            // This is Sparta ! 
+            while (!System.Console.KeyAvailable)
+            {
+                System.Threading.Thread.Sleep(500);
+            }
+            
             OnExit();
         } // End Sub Test 
 
