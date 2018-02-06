@@ -27,6 +27,9 @@ dotnet run sql_profiler --server {computername\instance} --username WebAppWebSer
 ```
 If you omit the username, it will attempt to connect with integrated security.
 
+[![Windows-Console-Profiler: This is Sparta !][1]][1]
+
+
 
 **Grant rights:** 
 
@@ -76,3 +79,6 @@ GO
 
 **Build for Linux x86-32:**
 > **not supported by framework**
+
+
+  [1]: https://i.stack.imgur.com/IgYvq.png

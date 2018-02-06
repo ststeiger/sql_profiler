@@ -282,6 +282,8 @@ namespace sql_profiler
 
         static void Main(string[] args)
         {
+            System.Console.Title = "This is Sparta !";
+
             // MainTest(args);
             DoProfiling(args);
         }
