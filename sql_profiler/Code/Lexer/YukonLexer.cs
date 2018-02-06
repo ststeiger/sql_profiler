@@ -138,6 +138,8 @@ namespace ExpressProfiler
                 Next();
             }
             
+            sb.AppendLine();
+            
             lsTokenTypeHistory.Clear();
             lsTokenTypeHistory = null;
             

@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace ExpressProfiler
 {
 
@@ -391,7 +393,13 @@ User Id={1};Password='{2}';;Application Name=Express Profiler"
 
             // System.Console.WriteLine(evt);
             string caption = GetEventCaption(evt);
-            System.Console.WriteLine(caption);
+            System.Console.Write(caption);
+            System.Console.Write(new string(' ', System.Console.BufferWidth - System.Console.CursorLeft));
+            System.Console.WriteLine();
+            
+            
+            
+            System.Console.WriteLine();
             string td = evt.GetFormattedData(ProfilerEventColumns.TextData, null);
             // System.Console.WriteLine(td);
             
