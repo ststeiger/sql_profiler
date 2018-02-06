@@ -77,6 +77,8 @@ namespace ExpressProfiler
         {
             Line = value;
 
+            sb.AppendLine();
+
             System.Collections.Generic.List<TokenKind> lsTokenTypeHistory =
                 new System.Collections.Generic.List<TokenKind>();
             
@@ -140,12 +142,11 @@ namespace ExpressProfiler
             
             sb.AppendLine();
             sb.AppendLine();
-            string lol = sb.ToString();
-            
+
             lsTokenTypeHistory.Clear();
             lsTokenTypeHistory = null;
 
-            return lol;
+            return sb.ToString();
         }
 
         private string Line

@@ -18,8 +18,9 @@ namespace ExpressProfiler
         protected System.Collections.Concurrent.ConcurrentQueue<ProfilerEvent> m_events;
         protected readonly System.Collections.Generic.List<PerfColumn> m_columns;
         protected readonly YukonLexer m_Lex;
-            
-        
+        protected readonly bool m_isWindows;
+
+
         protected readonly ProfilerEvent m_EventStarted = new ProfilerEvent();
         protected readonly ProfilerEvent m_EventStopped = new ProfilerEvent();
         protected readonly ProfilerEvent m_EventPaused = new ProfilerEvent();
@@ -54,11 +55,11 @@ namespace ExpressProfiler
             this.m_password = password;
             this.m_integrated_security = string.IsNullOrWhiteSpace(username);
 
-            bool isWindows = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(
+            this.m_isWindows = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(
                    System.Runtime.InteropServices.OSPlatform.Windows
                );
 
-            if (this.m_integrated_security && !isWindows)
+            if (this.m_integrated_security && !this.m_isWindows)
             {
                 throw new System.ArgumentException($"Username is NULL or empty. Cannot use integrated-security on non-windows platform.");
             }
@@ -399,8 +400,12 @@ User Id={1};Password='{2}';;Application Name=Express Profiler"
             string caption = GetEventCaption(evt);
             System.Console.Write(caption);
             System.Console.Write(new string(' ', System.Console.BufferWidth - System.Console.CursorLeft));
-            System.Console.Write(System.Environment.NewLine);
+
+            if(!this.m_isWindows)
+                System.Console.Write(System.Environment.NewLine);
             
+            
+
             string td = evt.GetFormattedData(ProfilerEventColumns.TextData, null);
             // System.Console.WriteLine(td);
             
@@ -417,9 +422,12 @@ User Id={1};Password='{2}';;Application Name=Express Profiler"
             };
 
 
-            // var lex = new YukonLexer(); lex.SyntaxHighlight(cw, td);
-            this.m_Lex.SyntaxHighlight(cw, td);
-            // rich.Rtf = this.m_Lex.SyntaxHighlight(rb, td);
+            if (!string.IsNullOrEmpty(td))
+            {
+                // var lex = new YukonLexer(); lex.SyntaxHighlight(cw, td);
+                this.m_Lex.SyntaxHighlight(cw, td);
+                // rich.Rtf = this.m_Lex.SyntaxHighlight(rb, td);
+            }
 
             // for(int i = 0; i < 65; ++i) // 65 is size of array
             // System.Console.WriteLine(evt.GetFormattedData(i, null));

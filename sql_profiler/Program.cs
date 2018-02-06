@@ -280,23 +280,31 @@ namespace sql_profiler
 
         static void Main(string[] args)
         {
-            // MainTest(args);
-            DoProfiling(args);
+            MainTest(args);
+            // DoProfiling(args);
         }
-        
-        
+
+
         static void MainTest(string[] args)
         {
             string instance = GetPlatformDefaultInstance();
             // dotnet run --server localhost --username MY_USER --password MY_PASSWORD --db MY_DB
             // string ar = $"--server {instance} --username WebAppWebServices --password TOP_SECRET --Db COR_Basic_Demo_V4";
-            // string ar = $"--server {instance} /db \"COR_Basic_Demo_V4\"";
-            
-            string un = TestPlotly.SecretManager.GetSecret<string>("DefaultDbUser");
-            string pw = TestPlotly.SecretManager.GetSecret<string>("DefaultDbPassword");
-            
-            string ar = $"--server {instance} --username {un} --password {pw} --db \"Redmine\"";
-            
+
+            string ar = $"--server {instance} /db \"COR_Basic_Demo_V4\"";
+            ar = $"--server {instance} /db \"SwissRe_Test_V4\"";
+
+            bool isWindows = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(
+                    System.Runtime.InteropServices.OSPlatform.Windows
+            );
+
+            if(!isWindows)
+            {
+                string un = TestPlotly.SecretManager.GetSecret<string>("DefaultDbUser");
+                string pw = TestPlotly.SecretManager.GetSecret<string>("DefaultDbPassword");
+                ar = $"--server {instance} --username {un} --password {pw} --db \"Redmine\"";
+            }
+
             DoProfiling(ar.Split(' '));
         } // End Sub Main 
 
@@ -360,8 +368,10 @@ namespace sql_profiler
             s_profiler = new ExpressProfiler.SqlServerProfiler(server, db, username, password);
             
             s_profiler.StartProfiling();
-            
-            
+
+
+            System.Console.ResetColor();
+
             // System.Console.WriteLine("--- Press ENTER to stop profiling --- ");
             // System.Console.ReadLine();
             
@@ -383,8 +393,12 @@ namespace sql_profiler
         ]
         private static void OnExit()
         {
-            if(s_profiler != null) // Is there any chance this could happen ? 
+            System.Console.ResetColor();
+
+            if (s_profiler != null) // Is there any chance this could happen ? 
                 s_profiler.StopProfiling();
+
+            System.Console.ResetColor();
         } // End Sub OnExit 
 
 

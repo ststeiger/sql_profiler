@@ -82,7 +82,7 @@ namespace ExpressProfiler
             {
                 // if (!s_colorDict.ContainsKey(value)) System.Console.WriteLine(value);
                 System.Console.BackgroundColor = s_colorDict[value];
-                this.AppendLine();
+                //this.AppendLine();
             }
         }
 
@@ -91,7 +91,9 @@ namespace ExpressProfiler
         {   
             // Finish the line with empty color
             System.Console.Write(new string(' ', System.Console.BufferWidth - System.Console.CursorLeft));
-            System.Console.Write(System.Environment.NewLine);
+
+            if(!s_isWindows)
+                System.Console.Write(System.Environment.NewLine);
             //else System.Console.WriteLine();
         }
         
