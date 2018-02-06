@@ -288,7 +288,8 @@ namespace sql_profiler
         {
             string instance = GetPlatformDefaultInstance();
             // dotnet run --server localhost --username MY_USER --password MY_PASSWORD --db MY_DB
-            string ar = $"--server {instance} --username WebAppWebServices --password TOP_SECRET /Db COR_Basic_Demo_V4";
+            // string ar = $"--server {instance} --username WebAppWebServices --password TOP_SECRET --Db COR_Basic_Demo_V4";
+            string ar = $"--server {instance} /db \"SwissRe_Test_V4\"";
             DoProfiling(ar.Split(' '));
         } // End Sub Main 
 
@@ -355,8 +356,12 @@ namespace sql_profiler
             s_profiler.StartProfiling();
 
 
-            System.Console.WriteLine("--- Press any key to stop profiling --- ");
-            System.Console.ReadKey();
+            // System.Console.WriteLine("--- Press any key to stop profiling --- ");
+            //System.Console.ReadKey();
+
+            System.Console.WriteLine("--- Press ENTER to stop profiling --- ");
+            System.Console.ReadLine();
+
             OnExit();
         } // End Sub Test 
 

@@ -77,14 +77,17 @@ namespace ExpressProfiler
             {
                 // if (!s_colorDict.ContainsKey(value)) System.Console.WriteLine(value);
                 System.Console.BackgroundColor = s_colorDict[value];
-                System.Console.WriteLine(new string(' ', System.Console.BufferWidth));
+                this.AppendLine();
+                //System.Console.WriteLine(new string(' ', System.Console.BufferWidth));
             }
         }
 
 
         public override void AppendLine()
         {
-            System.Console.WriteLine();
+            // Finish the line with empty color
+            System.Console.Write(new string(' ', System.Console.BufferWidth - System.Console.CursorLeft));
+            // System.Console.WriteLine();
         }
 
 

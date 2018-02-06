@@ -76,7 +76,7 @@ namespace ExpressProfiler
         public string SyntaxHighlight(OutputWriter sb, string value)
         {
             Line = value;
-            
+
             System.Collections.Generic.List<TokenKind> lsTokenTypeHistory =
                 new System.Collections.Generic.List<TokenKind>();
             
@@ -137,9 +137,10 @@ namespace ExpressProfiler
                 }
                 Next();
             }
-            
+
             sb.AppendLine();
-            
+            sb.AppendLine();
+
             lsTokenTypeHistory.Clear();
             lsTokenTypeHistory = null;
             
