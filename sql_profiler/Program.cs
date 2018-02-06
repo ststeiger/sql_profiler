@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace sql_profiler
 {
 
@@ -280,8 +282,8 @@ namespace sql_profiler
 
         static void Main(string[] args)
         {
-            MainTest(args);
-            // DoProfiling(args);
+            // MainTest(args);
+            DoProfiling(args);
         }
 
 
@@ -292,23 +294,29 @@ namespace sql_profiler
             // string ar = $"--server {instance} --username WebAppWebServices --password TOP_SECRET --Db COR_Basic_Demo_V4";
 
             string ar = $"--server {instance} /db \"COR_Basic_Demo_V4\"";
-            ar = $"--server {instance} /db \"SwissRe_Test_V4\"";
-
+            
             bool isWindows = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(
                     System.Runtime.InteropServices.OSPlatform.Windows
             );
-
+             
             if(!isWindows)
             {
-                string un = TestPlotly.SecretManager.GetSecret<string>("DefaultDbUser");
-                string pw = TestPlotly.SecretManager.GetSecret<string>("DefaultDbPassword");
-                ar = $"--server {instance} --username {un} --password {pw} --db \"Redmine\"";
+                try
+                {
+                    string un = TestPlotly.SecretManager.GetSecret<string>("DefaultDbUser");
+                    string pw = TestPlotly.SecretManager.GetSecret<string>("DefaultDbPassword");
+                    ar = $"--server {instance} --username {un} --password {pw} --db \"Redmine\"";
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
             }
-
+            
             DoProfiling(ar.Split(' '));
         } // End Sub Main 
-
-
+        
         
         static void DoProfiling(string[] args)
         {
