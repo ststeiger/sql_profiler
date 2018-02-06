@@ -58,7 +58,7 @@ namespace ExpressProfiler
             dict.Add(System.Drawing.Color.Magenta, System.ConsoleColor.Magenta);
             dict.Add(System.Drawing.Color.Yellow, System.ConsoleColor.Yellow);
             dict.Add(System.Drawing.Color.White, System.ConsoleColor.White);
-            dict.Add(System.Drawing.Color.Fuchsia, System.ConsoleColor.Red); // Correct ? 
+            dict.Add(System.Drawing.Color.Fuchsia, System.ConsoleColor.Magenta); // Correct ? 
 
             return dict;
         }
