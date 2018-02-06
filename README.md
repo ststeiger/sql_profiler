@@ -29,6 +29,8 @@ If you omit the username, it will attempt to connect with integrated security.
 
 [![Windows-Console-Profiler: This is Sparta !][1]][1]
 
+[![Linux-Console-Profiler: This is Sparta !][2]][2]
+
 
 
 **Grant rights:** 
@@ -82,3 +84,4 @@ GO
 
 
   [1]: https://i.stack.imgur.com/IgYvq.png
+  [2]: https://i.stack.imgur.com/hEaFY.png
