@@ -1,6 +1,4 @@
 ﻿
-using System;
-
 namespace sql_profiler
 {
 
@@ -278,14 +276,32 @@ namespace sql_profiler
 
             return  System.Environment.MachineName;
         } // End Function GetPlatformDefaultInstance 
-
-
+        
+        
         static void Main(string[] args)
         {
-            System.Console.Title = "This is Sparta !";
-
+            System.Console.Title = "https://github.com/ststeiger/sql_profiler";
+            
+            ﾠ300 = new System.Timers.Timer(4000);
+            ﾠ300.AutoReset = true;
+            ﾠ300.Elapsed += new System.Timers.ElapsedEventHandler(Sparta_Elapsed);
+            ﾠ300.Start();
+            
             // MainTest(args);
             DoProfiling(args);
+        }
+
+        private static System.Timers.Timer ﾠ300;
+        private static bool s_showSparta = true;
+        
+        private static void Sparta_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            if(s_showSparta)
+                System.Console.Title = "THIS IS MADNESS!!!    Madness huh?    THIS IS SPARTA!!!!!!! ";
+            else 
+                System.Console.Title = "https://github.com/ststeiger/sql_profiler";
+                
+            s_showSparta ^= true;
         }
 
 
@@ -309,9 +325,9 @@ namespace sql_profiler
                     string pw = TestPlotly.SecretManager.GetSecret<string>("DefaultDbPassword");
                     ar = $"--server {instance} --username {un} --password {pw} --db \"Redmine\"";
                 }
-                catch (Exception e)
+                catch (System.Exception e)
                 {
-                    Console.WriteLine(e);
+                    System.Console.WriteLine(e);
                     throw;
                 }
             }
@@ -385,15 +401,22 @@ namespace sql_profiler
             // System.Console.WriteLine("--- Press ENTER to stop profiling --- ");
             // System.Console.ReadLine();
             
-            System.Console.WriteLine("--- Press any key to stop profiling --- ");
+            // System.Console.WriteLine("--- Press any key to stop profiling --- ");
             // System.Console.ReadKey();
             
-            // This is Sparta ! 
-            while (!System.Console.KeyAvailable)
-            {
-                System.Threading.Thread.Sleep(500);
-            }
+            System.Console.WriteLine("--- Press ENTER to stop profiling --- ");
             
+            
+            do
+            {
+                // THIS IS MADNESS!!!   Madness huh?   THIS IS SPARTA!!!!!!! 
+                while (!System.Console.KeyAvailable)
+                {
+                    System.Threading.Thread.Sleep(100);
+                }
+
+            } while (System.Console.ReadKey().Key != System.ConsoleKey.Enter);
+
             OnExit();
         } // End Sub Test 
 
