@@ -290,7 +290,8 @@ namespace sql_profiler
             // MainTest(args);
             DoProfiling(args);
         }
-
+        
+        // https://stackoverflow.com/a/48274520
         private static System.Timers.Timer ﾠ300;
         private static bool s_showSparta = true;
         
