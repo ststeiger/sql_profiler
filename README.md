@@ -67,6 +67,10 @@ GO
 > dotnet build -r win-x86<br />
 > dotnet publish -f netcoreapp2.0 -c Release -r win-x86<br />
 
+
+**Build for Linux x86-32:**
+> **not supported by framework**
+
 **Build for Linux x86-64:**
 > dotnet restore -r linux-x64<br />
 > dotnet build -r linux-x64<br />
@@ -78,10 +82,33 @@ GO
 > dotnet build -r linux-arm<br />
 > dotnet publish -f netcoreapp2.0 -c Release -r linux-arm<br />
 
-
-**Build for Linux x86-32:**
+**Build for Linux ARM-64:**
 > **not supported by framework**
+
+
+**Build for Mac OSX x86-32:**
+> **not supported by framework**
+
+**Build for Mac OSX x86-64:**
+> dotnet restore -r osx-x64<br />
+> dotnet build -r osx-x64<br />
+> dotnet publish -f netcoreapp2.0 -c Release -r osx-x64<br />
+
+Mac build requires MacOS >= Sierra (10.12+)
+
+
+
+# Future:
+**Build for Android (arch?):**
+> dotnet restore -r android<br />
+> dotnet build -r android<br />
+> dotnet publish -f netcoreapp2.0 -c Release -r android<br />
+
+
+[List of RIDs][3]
+
 
 
   [1]: https://i.stack.imgur.com/IgYvq.png
   [2]: https://i.stack.imgur.com/hEaFY.png
+  [3]: https://docs.microsoft.com/en-us/dotnet/core/rid-catalog

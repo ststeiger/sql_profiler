@@ -1,0 +1,14 @@
+﻿
+language: csharp
+dist: xenial
+# http://www.erikschierboom.com/2017/03/21/continuous-integration-of-dotnet-core-applications/
+# SDK-version:
+dotnet: 2.1.4
+mono: none
+env:
+  global:
+    - DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+    - DOTNET_CLI_TELEMETRY_OPTOUT: 1
+script:
+  - dotnet restore
+  - dotnet build
