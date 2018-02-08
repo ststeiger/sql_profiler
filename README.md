@@ -1,4 +1,7 @@
 ﻿
+# MS-SQL-Server command line profiler  ![Travis-CI Status](https://travis-ci.org/ststeiger/sql_profiler.svg?branch=master) ![AppVeyor Status](https://ci.appveyor.com/api/projects/status/2s9x1armpbam5nnx?svg=true)
+
+
 sql_profiler is a simple and fast replacement for SQL Server Profiler. <br />
 It's a .NET-Core command-line port of ExpressProfiler, and runs everywhere .NET Core runs. 
 So it runs on 
