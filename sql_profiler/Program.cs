@@ -280,6 +280,7 @@ namespace sql_profiler
         
         static void Main(string[] args)
         {
+            System.Console.Clear();
             System.Console.Title = "https://github.com/ststeiger/sql_profiler";
             
             ﾠ300 = new System.Timers.Timer(4000);
@@ -287,8 +288,8 @@ namespace sql_profiler
             ﾠ300.Elapsed += new System.Timers.ElapsedEventHandler(Sparta_Elapsed);
             ﾠ300.Start();
             
-            // MainTest(args);
-            DoProfiling(args);
+            MainTest(args);
+            // DoProfiling(args);
         }
         
         // https://stackoverflow.com/a/48274520
@@ -353,7 +354,7 @@ namespace sql_profiler
 
             defaultValues["server"] = GetPlatformDefaultInstance();
             defaultValues["db"] = "COR_Basic_Demo_V4";
-
+            
             System.Collections.Generic.Dictionary<string, Argument> arg_list = 
                 GetCommandLineArguments(args, defaultValues);
             
@@ -406,7 +407,8 @@ namespace sql_profiler
             // System.Console.ReadKey();
             
             System.Console.WriteLine("--- Press ENTER to stop profiling --- ");
-            
+
+            System.ConsoleKey cc = default(System.ConsoleKey);
             
             do
             {
@@ -416,8 +418,13 @@ namespace sql_profiler
                     System.Threading.Thread.Sleep(100);
                 }
 
-            } while (System.Console.ReadKey().Key != System.ConsoleKey.Enter);
-
+                cc = System.Console.ReadKey().Key;
+                
+                if(cc == System.ConsoleKey.C)
+                    System.Console.Clear();
+                
+            } while (cc != System.ConsoleKey.Enter);
+            
             OnExit();
         } // End Sub Test 
 

@@ -104,9 +104,10 @@ namespace ExpressProfiler
             {
                 if (value.IndexOfAny(Slashable) >= 0)
                 {
-                    value = value.Replace("{", "\\{").Replace("}", "\\}").Replace("\\", "\\\\");
+                    // value = value.Replace("{", "\\{").Replace("}", "\\}").Replace("\\", "\\\\");
+                    value = value.Replace("\\", "\\\\").Replace("{", "\\{").Replace("}", "\\}");
                 }
-
+                
                 bool replaceuni = false;
                 for (int i = 0; i < value.Length; i++)
                 {
